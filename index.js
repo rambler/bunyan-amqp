@@ -50,7 +50,7 @@ class BunyanTransport {
     var _this = this;
     this._transport.then(function(channel) {
       var topics = [message.hostname.replace('.', ':'), message.name.replace('.', ':'), _this.levels[message.level]].join('.');
-      channel.publish(_this._exchange, topics, new Buffer(Stringify(message, null, 2)));
+      channel.publish(_this._exchange, topics, new Buffer(Stringify(message, null, 2)), { persistent: true });
     });
   }
 
